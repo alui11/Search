@@ -1,0 +1,96 @@
+strace -c -S calls ./search /etc > /dev/null
+7346	lstat
+698	getdents
+391	open
+351	close
+26	write
+24	stat
+9	mmap
+4	brk
+3	fstat
+3	mprotect
+1	read
+1	munmap
+1	ioctl
+1	access
+1	execve
+1	fcntl
+1	arch_prctl
+
+strace -c -S calls find /etc > /dev/null
+791	open
+714	newfstatat
+711	close
+701	fchdir
+698	getdents
+359	fstat
+102	write
+25	mmap
+24	stat
+13	mprotect
+10	read
+5	brk
+4	munmap
+3	ioctl
+2	rt_sigaction
+2	futex
+1	rt_sigprocmask
+1	access
+1	execve
+1	uname
+1	fcntl
+1	getrlimit
+1	statfs
+1	arch_prctl
+1	set_tid_address
+1	set_robust_list
+
+strace -c -S calls ./search /etc -exec echo \{\} \; > /dev/null
+7346	lstat
+3673	clone
+3673	wait4
+698	getdents
+391	open
+351	close
+24	stat
+8	mmap
+4	brk
+3	mprotect
+2	fstat
+1	read
+1	munmap
+1	access
+1	execve
+1	fcntl
+1	arch_prctl
+
+strace -c -S calls find /etc -exec echo \{\} \; > /dev/null
+3673	clone
+3673	wait4
+792	open
+714	newfstatat
+712	close
+701	fchdir
+698	getdents
+359	fstat
+64	write
+27	mmap
+24	stat
+13	mprotect
+10	read
+5	brk
+3	munmap
+3	rt_sigaction
+3	futex
+2	getrlimit
+1	rt_sigprocmask
+1	ioctl
+1	access
+1	execve
+1	uname
+1	fcntl
+1	statfs
+1	arch_prctl
+1	set_tid_address
+1	set_robust_list
+
